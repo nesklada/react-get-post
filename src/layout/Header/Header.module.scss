@@ -1,0 +1,24 @@
+@import 'scss/_media.scss';
+
+.header {
+    padding: 13px 0;
+    background: #fff;
+}
+
+.headerGrid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headerControls {
+    padding-left: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+
+    @media(min-width: $xs) {
+        padding-left: 15px;
+        gap: 10px;
+    }
+}

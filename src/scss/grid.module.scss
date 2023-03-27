@@ -1,0 +1,26 @@
+.container {
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 1200px;
+}
+
+.dFlex {
+    display: flex;
+}
+
+.flexColumn {
+    flex-direction: column;
+}
+
+.alignItemsCenter {
+    align-items: center;
+}
+
+.justifyCenter {
+    justify-content: center;
+}
+
+.pb0 {
+    padding-bottom: 0;
+}

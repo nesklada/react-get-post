@@ -1,0 +1,58 @@
+@import 'scss/_brand-colors.scss';
+
+.btn {
+    --btn-padding-y: 4px;
+    --btn-padding-x: 18px;
+    --btn-font-family: inherit;
+    --btn-font-weight: 400;
+    --btn-line-height: inherit;
+    --btn-color: rgba(0, 0, 0, 0.87);
+    --btn-border-radius: 80px;
+    --btn-border-color: transparent;
+    --btn-border-width: 1px;
+    --btn-bg: #{$brand-yellow};
+    --btn-min-width: 100px;
+
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    display: inline-block;
+    min-width: var(--btn-min-width);
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: var(--btn-border-width) solid var(--btn-border-color);
+    border-radius: var(--btn-border-radius);
+    font-family: var(--btn-font-family);
+    font-size: var(--btn-font-size);
+    font-weight: var(--btn-font-weight);
+    line-height: var(--btn-line-height);
+    color: var(--btn-color);
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--btn-bg);
+    transition: color .15s ease-in-out,
+                background-color .15s ease-in-out,
+                border-color .15s ease-in-out,
+                box-shadow .15s ease-in-out,
+                filter .15s ease-in-out;
+
+    &:hover {
+        filter: brightness(85%);
+    }
+
+    &:active {
+        transition: 0s;
+        filter: none;
+        color: #fff;
+        background: #000;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+        --btn-bg: #B4B4B4;
+        --btn-color: #fff;
+    }
+}
+

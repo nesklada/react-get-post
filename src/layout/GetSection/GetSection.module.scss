@@ -1,0 +1,11 @@
+.cards {
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
