@@ -1,0 +1,27 @@
+.form {
+    margin: 0 auto;
+    max-width: 380px;
+    width: 100%;
+
+    input {
+        font-family: inherit !important;
+    }
+}
+
+.formGroup {
+    margin-bottom: 25px;
+    min-height: 80px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.formMask {
+    padding-top: 4px;
+    padding-left: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.17;
+    color: #7E7E7E;
+}

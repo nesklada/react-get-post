@@ -8,9 +8,7 @@ export default function Entry({children, bgImageSrc}) {
             'backgroundImage': `url('${bgImageSrc || entryBgSrc}')`
         }}>
             <div className={styles.entry}>
-                <div className={styles.entryContent}>
-                    {children}
-                </div>
+                {children}
             </div>
         </div>
     )

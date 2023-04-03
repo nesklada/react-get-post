@@ -1,5 +1,6 @@
 @import 'scss/_media.scss'; 
 .entryBg {
+    margin-bottom: 70px;
     background: no-repeat center /cover;
 }
 
@@ -16,11 +17,4 @@
     @media(min-width: $lg) {
         min-height: 650px;
     }
-}
-
-.entryContent {
-    margin: 0 auto;
-    max-width: 380px;
-    width: 100%;
-    text-align: center;
 }

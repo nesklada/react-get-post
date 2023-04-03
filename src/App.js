@@ -1,9 +1,12 @@
+import UserContextProvider from 'context/UserContext';
 import Header from './layout/Header/Header'
 import Main from 'layout/Main/Main';
 import EntrySection from 'layout/EntrySection/EntrySection';
+import GetSection from 'layout/GetSection/GetSection';
+import PostSection from 'layout/PostSection/PostSection';
+import Tooltip from 'components/Tooltip/Tooltip';
 
 import styles from './App.module.scss';
-import GetSection from 'layout/GetSection/GetSection';
 
 function App() {
   return (
@@ -11,8 +14,13 @@ function App() {
       <Header />
       <Main>
         <EntrySection />
-        <GetSection />
+        <UserContextProvider>
+          <GetSection />
+          <PostSection />
+        </UserContextProvider>
       </Main>
+
+      <Tooltip />
     </div>
   );
 }

@@ -48,11 +48,15 @@
         background: #000;
     }
 
+    &:disabled,
+    &Disabled {
+        --btn-bg: #B4B4B4;
+        --btn-color: #fff;
+    }
+
     &:disabled {
         cursor: not-allowed;
         pointer-events: none;
-        --btn-bg: #B4B4B4;
-        --btn-color: #fff;
     }
 }
 

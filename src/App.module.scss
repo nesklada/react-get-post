@@ -1,9 +1,18 @@
+:root {
+    --brand-danger: #d32f2f;
+    --brand-primary: #00bdd3;
+}
+
 body {
     font-family: 'Nunito', sans-serif;
     font-size: 16px;
     line-height: 1.62;
     color: rgba(#000, 0.87);
     background: #f8f8f8;
+}
+
+input {
+    font-family: 'Nunito', sans-serif;
 }
 
 h1,
