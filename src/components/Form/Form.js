@@ -7,7 +7,7 @@ import response from 'api/response';
 import useFetch from 'hooks/useFetch';
 
 import InputMask from 'react-input-mask';
-import Button, { scrollToNodeID } from "components/Button/Button";
+import Button, { scrollToID } from "components/Button/Button";
 import UploadField from "components/UploadField/UploadField";
 import Loader from 'components/Loader/Loader';
 import SectionHeader from 'components/Section/SectionHeader';
@@ -73,7 +73,7 @@ export default function Form({ onSubmited }) {
                 page: 1
             });
 
-            scrollToNodeID(postSectionID);
+            scrollToID(postSectionID);
         }).finally(() => setSubmiting(false));
     }, [updateUsers]);
 

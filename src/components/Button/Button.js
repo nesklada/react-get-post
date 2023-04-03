@@ -3,19 +3,19 @@ import styles from './Button.module.scss'
 
 export default function Button({ onClick, disabled, type, scrollTo, disabledClass, children }) {
 
-    const scrollHandle = useCallback((e) => {
-        e.preventDefault();
-
-        if (onClick) {
-            onClick(e);
+    const handleClick = useCallback((e) => {
+        if(onClick){
+            onClick(e)
         }
 
-        scrollToNodeID(scrollTo);
-    }, [onClick, scrollTo]);
+        if(scrollTo) {
+            scrollToID(scrollTo);
+        }
+    }, [scrollTo, onClick]);
 
     return (
         <button className={`${styles.btn} ${disabledClass ? styles.btnDisabled : ''}`}
-            onClick={scrollTo ? scrollHandle : onClick}
+            onClick={handleClick}
             disabled={disabled}
             type={type || 'button'}>
             {children}
@@ -23,7 +23,7 @@ export default function Button({ onClick, disabled, type, scrollTo, disabledClas
     )
 }
 
-export function scrollToNodeID(id) {
+export function scrollToID(id) {
     const target = document.getElementById(id);
 
     if (target) {

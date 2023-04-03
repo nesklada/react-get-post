@@ -5,7 +5,7 @@ export default React.forwardRef(({ onChange, onBlur, name, placeholder, error, m
     const [filename, setFilename] = useState('');
 
     return (
-        <div className={`${styles.upload} ${error ? styles.isError : ''}`}>
+        <label className={`${styles.upload} ${error ? styles.isError : ''}`}>
             <input className={styles.uploadField}
                 type="file"
                 multiple={multiple || false}
@@ -35,7 +35,7 @@ export default React.forwardRef(({ onChange, onBlur, name, placeholder, error, m
                     {filename || placeholder}
                 </div>
             </div>
-        </div>
+        </label>
     )
 })
 

@@ -1,4 +1,17 @@
-.disable {
-    pointer-events: none;
-    cursor: default;
+.brandLogo {
+    position: relative;
+    overflow: hidden;
+    color: transparent;
+
+    &.isDisable {
+        pointer-events: none;
+        cursor: default;
+    }
+}
+
+.brandLogoName {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
 }
