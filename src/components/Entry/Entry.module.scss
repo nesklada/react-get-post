@@ -1,6 +1,9 @@
 @import 'scss/_media.scss'; 
+
 .entryBg {
-    margin-bottom: 70px;
+    margin: 0 auto 70px;
+    width: 100%;
+    max-width: 1170px;
     background: no-repeat center /cover;
 }
 
