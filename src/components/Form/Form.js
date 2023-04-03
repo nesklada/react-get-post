@@ -133,6 +133,7 @@ export default function Form({ onSubmited }) {
                                     <TextField label="Phone"
                                         fullWidth
                                         variant="outlined"
+                                        type="tel"
                                         {...inputProps}>
 
                                     </TextField>
