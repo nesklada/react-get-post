@@ -110,6 +110,7 @@ export default function Form({ onSubmited }) {
                             <TextField label="Email"
                                 fullWidth
                                 variant="outlined"
+                                type="email"
                                 {...register('email', {
                                     required: requiredMessage,
                                     pattern: {
