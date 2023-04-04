@@ -17,8 +17,6 @@
     "react-hook-form": "^7.43.9",
     "react-input-mask": "^2.0.4",
     "react-scripts": "5.0.1",
-    "react-tooltip": "^5.10.1",
-    "react-useportal": "^1.0.17",
     "sweetalert2": "^11.7.3",
     "sweetalert2-react-content": "^5.0.7",
     "web-vitals": "^2.1.4"

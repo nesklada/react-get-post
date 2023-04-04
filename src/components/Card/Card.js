@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './Card.module.scss';
-import { tooltipClickableID } from 'components/Tooltip/Tooltip';
+import CustomTooltip from 'components/CustomTooltip/CustomTooltip';
 
 export default function Card({
     photo,
@@ -41,17 +41,22 @@ function OverflowText({ text }) {
     useEffect(() => {
         const isOverflow = ref.current.scrollWidth > ref.current.clientWidth;
 
-        if(!isOverflow) {
+        if (!isOverflow) {
             return
         }
 
         setIsTooltip(isOverflow);
     }, []);
 
-    return (<div ref={ref}
-            className={styles.cardNowrap}
-            data-tooltip-id={tooltipClickableID}
-            data-tooltip-content={isTooltip ? text : ''}>
-        {text}
-    </div>)
+    return (<>
+        {isTooltip ?
+            <CustomTooltip
+                title={text}
+                placement="bottom"
+            >
+                <div ref={ref} className={styles.cardNowrap}>{text}</div>
+            </CustomTooltip> :
+            <div ref={ref} className={styles.cardNowrap}>{text}</div>
+        }
+    </>)
 }

@@ -4,7 +4,6 @@ import Main from 'layout/Main/Main';
 import EntrySection from 'layout/EntrySection/EntrySection';
 import GetSection from 'layout/GetSection/GetSection';
 import PostSection from 'layout/PostSection/PostSection';
-import Tooltip from 'components/Tooltip/Tooltip';
 
 import 'bootstrap/dist/css/bootstrap-reboot.min.css';
 import styles from './App.module.scss';
@@ -20,8 +19,6 @@ function App() {
           <PostSection />
         </UserContextProvider>
       </Main>
-
-      <Tooltip />
     </div>
   );
 }
