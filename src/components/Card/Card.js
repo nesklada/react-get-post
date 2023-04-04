@@ -35,22 +35,23 @@ export default function Card({
 }
 
 function OverflowText({ text }) {
-    const [isOverflowed, setIsOverflow] = useState(true);
-    const textElementRef = useRef();
+    const [isTooltip, setIsTooltip] = useState(false);
+    const ref = useRef();
 
     useEffect(() => {
-        setIsOverflow(textElementRef.current.scrollWidth > textElementRef.current.clientWidth);
+        const isOverflow = ref.current.scrollWidth > ref.current.clientWidth;
+
+        if(!isOverflow) {
+            return
+        }
+
+        setIsTooltip(isOverflow);
     }, []);
 
-    const attr = {
-        ref: textElementRef,
-        className: styles.cardNowrap,
-    };
-
-    if (isOverflowed) {
-        attr['data-tooltip-id'] = tooltipClickableID;
-        attr['data-tooltip-content'] = text;
-    }
-
-    return (<div {...attr}>{text}</div>)
+    return (<div ref={ref}
+            className={styles.cardNowrap}
+            data-tooltip-id={tooltipClickableID}
+            data-tooltip-content={isTooltip ? text : ''}>
+        {text}
+    </div>)
 }

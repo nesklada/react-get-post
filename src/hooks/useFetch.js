@@ -16,7 +16,7 @@ export default function useFetch(url, objUtms) {
         response(url, {
             signal
         }, utms).then(data => {
-            if(!data.success) return 
+            if(!data?.success) return 
             
             setData(data);
         }).finally(() => setFetching(false));

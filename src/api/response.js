@@ -17,8 +17,6 @@ export default function response(url, params, utms = '') {
                 return data;
             })
             .catch(error => {
-                console.clear();
-
                 if(error.name === 'AbortError') {
                     return
                 }
