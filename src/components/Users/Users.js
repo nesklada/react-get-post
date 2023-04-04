@@ -1,5 +1,5 @@
 import { useContext, useRef } from 'react';
-import { usersContext, usersHandleContext } from "context/UserContext";
+import { usersContext, usersActionsContext } from "context/UsersContext";
 import Loader from 'components/Loader/Loader';
 import Card from "components/Card/Card";
 import Button from "components/Button/Button";
@@ -11,7 +11,7 @@ const { dFlex, justifyCenter } = stylesGrid;
 
 export default function Cards({onClickScrollTo}) {
     const { usersData, fetchingUsersData } = useContext(usersContext);
-    const handleUsers = useContext(usersHandleContext);
+    const handleUsers = useContext(usersActionsContext);
 
     const usersPage = useRef(1);
 

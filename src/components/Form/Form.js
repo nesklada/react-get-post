@@ -2,7 +2,7 @@ import { useCallback, useState, useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { API_POSITIONS, API_TOKEN, API_USERS } from 'api/config';
 import { emailRegex } from 'api/validation';
-import { usersHandleContext } from 'context/UserContext';
+import { usersActionsContext } from 'context/UsersContext';
 import response from 'api/response';
 import useFetch from 'hooks/useFetch';
 
@@ -35,11 +35,13 @@ export default function Form() {
     const [submited, setSubmited] = useState(false);
     const [submiting, setSubmiting] = useState(false);
     const [options] = useFetch(API_POSITIONS);
-    const updateUsers = useContext(usersHandleContext);
+    const updateUsers = useContext(usersActionsContext);
 
     const positions = options?.positions;
 
     const { register, formState: { errors, isValid }, handleSubmit } = useForm();
+
+    console.log('[Form] rendered');
 
     const onSubmit = useCallback(async (data) => {
         setSubmiting(true);
@@ -55,6 +57,8 @@ export default function Form() {
             });
 
         if (!token) {
+            setSubmiting(false);
+
             return
         }
 
@@ -74,7 +78,6 @@ export default function Form() {
 
             scrollToID(postSectionID);
         })
-        .catch(() => console.log('catch'))
         .finally(() => setSubmiting(false));
     }, [updateUsers]);
 

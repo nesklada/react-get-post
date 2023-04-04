@@ -1,4 +1,4 @@
-import UserContextProvider from 'context/UserContext';
+import UsersContextProvider from 'context/UsersContext';
 import Header from './layout/Header/Header'
 import Main from 'layout/Main/Main';
 import EntrySection from 'layout/EntrySection/EntrySection';
@@ -14,10 +14,10 @@ function App() {
       <Header />
       <Main>
         <EntrySection />
-        <UserContextProvider>
+        <UsersContextProvider>
           <GetSection />
           <PostSection />
-        </UserContextProvider>
+        </UsersContextProvider>
       </Main>
     </div>
   );
