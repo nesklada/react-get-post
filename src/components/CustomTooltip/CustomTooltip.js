@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
 const CustomTooltip = styled(({ className, ...props }) => (
-    <Tooltip disableFocusListener {...props} classes={{ popper: className, }} />
+    <Tooltip {...props} classes={{ popper: className, }} />
 ))({
     [`& .${tooltipClasses.tooltip}`]: {
         background: 'rgba(0,0,0, 0.87)',
