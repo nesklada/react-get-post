@@ -6,11 +6,12 @@ const CustomTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} classes={{ popper: className, }} />
 ))({
     [`& .${tooltipClasses.tooltip}`]: {
-        background: 'rgba(0,0,0, 0.87)',
-        color: '#fff',
+        padding: '3px 16px',
+        fontFamily: 'Nunito',
         fontSize: '16px',
         lineHeight: '1.62',
-        padding: '3px 16px',
+        color: '#fff',
+        background: 'rgba(0,0,0, 0.87)',
     },
 });
 
