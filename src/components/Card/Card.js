@@ -35,7 +35,7 @@ export default function Card({
 }
 
 function OverflowText({ text }) {
-    const [isOverflowed, setIsOverflow] = useState(false);
+    const [isOverflowed, setIsOverflow] = useState(true);
     const textElementRef = useRef();
 
     useEffect(() => {
@@ -52,5 +52,5 @@ function OverflowText({ text }) {
         attr['data-tooltip-content'] = text;
     }
 
-    return (<div {...attr}> {text} </div>)
+    return (<div {...attr}>{text}</div>)
 }
