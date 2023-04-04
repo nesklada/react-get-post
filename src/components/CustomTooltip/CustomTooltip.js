@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
 const CustomTooltip = styled(({ className, ...props }) => (
-    <Tooltip {...props} classes={{ popper: className, }} />
+    <Tooltip enterTouchDelay={5} {...props} classes={{ popper: className, }} />
 ))({
     [`& .${tooltipClasses.tooltip}`]: {
         padding: '3px 16px',
