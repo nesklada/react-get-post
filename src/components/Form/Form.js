@@ -31,13 +31,13 @@ const requiredMessage = 'This field is required.';
 const phoneMask = "+380 (99) 999-99-99";
 const enterMessage = 'Please enter a valid';
 
-export default function Form({ onSubmited }) {
+export default function Form() {
     const [submited, setSubmited] = useState(false);
     const [submiting, setSubmiting] = useState(false);
+    const [options] = useFetch(API_POSITIONS);
+    const updateUsers = useContext(usersHandleContext);
 
-    const [options, fetchingOptions] = useFetch(API_POSITIONS);
-
-    const updateUsers = useContext(usersHandleContext)
+    const positions = options?.positions;
 
     const { register, formState: { errors, isValid }, handleSubmit } = useForm();
 
@@ -46,7 +46,7 @@ export default function Form({ onSubmited }) {
 
         const token = await response(API_TOKEN)
             .then(data => {
-                if (!data.success) return
+                if (!data?.success) return
 
                 return data.token
             })
@@ -54,7 +54,7 @@ export default function Form({ onSubmited }) {
                 setSubmiting(false);
             });
 
-        if(!token) {
+        if (!token) {
             return
         }
 
@@ -65,8 +65,7 @@ export default function Form({ onSubmited }) {
                 'Token': token
             }
         }).then((data) => {
-            if(!data.success) return
-
+            if(!data?.success) return
             setSubmited(true);
 
             updateUsers({
@@ -74,7 +73,9 @@ export default function Form({ onSubmited }) {
             });
 
             scrollToID(postSectionID);
-        }).finally(() => setSubmiting(false));
+        })
+        .catch(() => console.log('catch'))
+        .finally(() => setSubmiting(false));
     }, [updateUsers]);
 
     return (
@@ -90,7 +91,7 @@ export default function Form({ onSubmited }) {
             {submited ? <FormSubmited /> :
                 <MUICustomTheme>
                     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-                        {(fetchingOptions || submiting) &&
+                        {(submiting || !positions) &&
                             <Loader fullSize={true} />
                         }
                         <div className={styles.formGroup}>
@@ -146,7 +147,7 @@ export default function Form({ onSubmited }) {
                         </div>
 
                         <div className={styles.formGroup}>
-                            {options?.positions?.length &&
+                            {positions &&
                                 <>
                                     <FormLabel>Select your position</FormLabel>
                                     <RadioGroup

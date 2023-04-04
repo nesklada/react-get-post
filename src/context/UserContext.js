@@ -7,7 +7,7 @@ export const usersHandleContext = createContext(null);
 
 export default function UserContextProvider({children}) {
     const [params, setParams] = useState({page: 1, count: 6});
-    const [dataUsers, fetchingDataUsers] = useFetch(API_USERS, params);
+    const [usersData, fetchingUsersData] = useFetch(API_USERS, params);
 
     function handleUsers(paramsObj) {
         setParams((state) => {
@@ -19,7 +19,7 @@ export default function UserContextProvider({children}) {
     }
 
     return(
-        <usersContext.Provider value={{dataUsers, fetchingDataUsers}}>
+        <usersContext.Provider value={{usersData, fetchingUsersData}}>
             <usersHandleContext.Provider value={handleUsers}>
                 {children}
             </usersHandleContext.Provider>
