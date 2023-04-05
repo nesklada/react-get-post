@@ -1,5 +1,3 @@
-# Getting Started with Create React App
-
 # Demo URL(https://nesklada.github.io/react-get-post/build/)
 
 This project used next libs: 
