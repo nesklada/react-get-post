@@ -1,11 +1,13 @@
 import { useContext, useRef } from 'react';
+import { motion } from "framer-motion";
 import { usersContext, usersActionsContext } from "context/UsersContext";
 import Loader from 'components/Loader/Loader';
-import Card from "components/Card/Card";
+import { MotionCard } from "components/Card/Card";
 import Button from "components/Button/Button";
 
 import styles from './Users.module.scss';
 import stylesGrid from "scss/grid.module.scss";
+import motionOnView from 'ui/motion';
 
 const { dFlex, justifyCenter } = stylesGrid;
 
@@ -35,24 +37,39 @@ export default function Cards({onClickScrollTo}) {
             <div className={styles.cards}>
                 {(fetching || !users) && <Loader fullSize={fetching && isUsers} />}
 
-                {isUsers && users.map(function ({ id, position, name, phone, photo, email }) {
-                    return (<Card key={id}
-                            name={name}
-                            position={position}
-                            phone={phone}
-                            photo={photo}
-                            email={email} />)
-                    })}
+                {isUsers && users.map(function ({ id, position, name, phone, photo, email }, index) {
+                    return (
+                    <MotionCard  key={id}
+                        name={name}
+                        position={position}
+                        phone={phone}
+                        photo={photo}
+                        email={email}
+                        
+                        //animation:
+                        {...motionOnView}
+                        transition={{
+                            delay: index * 0.1,
+                            transition: 0.75
+                        }}
+                        />
+                    )})}
             </div>
 
             {users && !isLastPage &&
-                <div className={`${dFlex} ${justifyCenter}`}>
+                <motion.div 
+                    className={`${dFlex} ${justifyCenter}`}
+                    transition={{
+                        transition: 0.75,
+                        delay: 0.1
+                    }}
+                    {...motionOnView}>
                     <Button disabled={fetchingUsersData}
                         onClick={handleMore}
                         scrollTo={onClickScrollTo}>
                         Show more
                     </Button>
-                </div>}
+                </motion.div>}
         </>
 
 

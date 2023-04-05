@@ -1,17 +1,19 @@
 import { useCallback, useState, useContext } from 'react';
 import { useForm } from "react-hook-form";
+import InputMask from 'react-input-mask';
+import { motion } from 'framer-motion';
+
 import { API_POSITIONS, API_TOKEN, API_USERS } from 'api/config';
 import { emailRegex } from 'api/validation';
 import { usersActionsContext } from 'context/UsersContext';
 import response from 'api/response';
 import useFetch from 'hooks/useFetch';
 
-import InputMask from 'react-input-mask';
 import Button, { scrollToID } from "components/Button/Button";
 import UploadField from "components/UploadField/UploadField";
 import Loader from 'components/Loader/Loader';
 import SectionHeader from 'components/Section/SectionHeader';
-import Heading from 'components/Heading/Heading';
+import {MotionHeading} from 'components/Heading/Heading';
 import MUICustomTheme from "components/MUICustomTheme/MUICustomTheme";
 import FormSubmited from './FormSubmited';
 import { postSectionID } from 'layout/PostSection/PostSection';
@@ -23,8 +25,11 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import { FormHelperText } from '@mui/material';
 
+import motionOnView from 'ui/motion';
+
 import styles from "./Form.module.scss";
 import stylesGrid from "scss/grid.module.scss";
+import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 
 const { dFlex, flexColumn, alignItemsCenter } = stylesGrid;
 const requiredMessage = 'This field is required.';
@@ -40,8 +45,6 @@ export default function Form() {
     const positions = options?.positions;
 
     const { register, formState: { errors, isValid }, handleSubmit } = useForm();
-
-    console.log('[Form] rendered');
 
     const onSubmit = useCallback(async (data) => {
         setSubmiting(true);
@@ -84,20 +87,38 @@ export default function Form() {
     return (
         <>
             <SectionHeader>
-                <Heading type={1}>
+                <MotionHeading 
+                    type={1}
+                    {...motionOnView}>
                     {submited ?
                         'User successfully registered' :
                         'Working with POST request'}
-                </Heading>
+                </MotionHeading>
             </SectionHeader>
 
-            {submited ? <FormSubmited /> :
+            {submited ?
+                <motion.div
+                    initial={{
+                        scale: 1.3,
+                        opacity: 0,
+                        y: 100
+                    }}
+                    animate={{
+                        scale: 1,
+                        opacity: 1,
+                        y: 0
+                    }}
+                    transition={{
+                        delay: 0.3
+                    }}>
+                    <FormSubmited />
+                </motion.div> :
                 <MUICustomTheme>
                     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                         {(submiting || !positions) &&
                             <Loader fullSize={true} />
                         }
-                        <div className={styles.formGroup}>
+                        <motion.div className={styles.formGroup} {...motionOnView}>
                             <TextField label="Your Name"
                                 fullWidth
                                 variant="outlined"
@@ -107,10 +128,10 @@ export default function Form() {
                                     maxLength: { value: 60, message: `${enterMessage} name.` }
                                 })}
                                 error={!!errors.name}
-                                helperText={errors.name?.message} />
-                        </div>
+                                helperText={<ErrorMessage>{errors.name?.message}</ErrorMessage>} />
+                        </motion.div>
 
-                        <div className={styles.formGroup}>
+                        <motion.div className={styles.formGroup} {...motionOnView}>
                             <TextField label="Email"
                                 fullWidth
                                 variant="outlined"
@@ -123,17 +144,17 @@ export default function Form() {
                                     }
                                 })}
                                 error={!!errors.email}
-                                helperText={errors.email?.message} />
-                        </div>
+                                helperText={<ErrorMessage>{errors.email?.message}</ErrorMessage>} />
+                        </motion.div>
 
-                        <div className={styles.formGroup}>
+                        <motion.div className={styles.formGroup} {...motionOnView}>
                             <InputMask mask={phoneMask}
                                 {...register('phone', {
                                     required: requiredMessage,
                                     validate: (val) => val.replace(/\D/g, '').length === 12 || `${enterMessage} phone number.`
                                 })}
                                 error={!!errors.phone}
-                                helperText={errors.phone?.message}>
+                                helperText={<ErrorMessage>{errors.phone?.message}</ErrorMessage>}>
                                 {(inputProps) => (
                                     <TextField label="Phone"
                                         fullWidth
@@ -147,9 +168,9 @@ export default function Form() {
                             <FormHelperText variant='outlined'>
                                 {phoneMask.replaceAll('9', 'X')}
                             </FormHelperText>
-                        </div>
+                        </motion.div>
 
-                        <div className={styles.formGroup}>
+                        <motion.div className={styles.formGroup} {...motionOnView}>
                             {positions &&
                                 <>
                                     <FormLabel>Select your position</FormLabel>
@@ -169,15 +190,17 @@ export default function Form() {
                                         {!!errors?.position &&
                                             <FormHelperText error={true}
                                                 variant='outlined'>
-                                                {errors.position?.message}
+                                                    <ErrorMessage>
+                                                        {errors.position?.message}
+                                                    </ErrorMessage>
                                             </FormHelperText>}
 
                                     </RadioGroup>
                                 </>
                             }
-                        </div>
+                        </motion.div>
 
-                        <div className={styles.formGroup}>
+                        <motion.div className={styles.formGroup} {...motionOnView}>
                             <UploadField
                                 placeholder='Upload your photo'
                                 {...register('photo', {
@@ -192,15 +215,19 @@ export default function Form() {
 
                             {!!errors?.photo &&
                                 <FormHelperText error={true} variant='outlined'>
-                                    {errors.photo?.message}
+                                    <ErrorMessage>
+                                        {errors.photo?.message}
+                                    </ErrorMessage>
                                 </FormHelperText>}
-                        </div>
+                        </motion.div>
 
-                        <div className={`${dFlex} ${flexColumn} ${alignItemsCenter}`}>
+                        <motion.div 
+                            className={`${dFlex} ${flexColumn} ${alignItemsCenter}`}
+                            {...motionOnView}>
                             <div>
                                 <Button disabledClass={!isValid} disabled={submiting} type="submit">Sign up</Button>
                             </div>
-                        </div>
+                        </motion.div>
                     </form>
                 </MUICustomTheme>
             }

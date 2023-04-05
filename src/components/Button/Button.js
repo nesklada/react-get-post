@@ -1,20 +1,28 @@
-import { useCallback } from 'react'
-import styles from './Button.module.scss'
+import { useCallback } from 'react';
 
-export default function Button({ onClick, disabled, type, scrollTo, disabledClass, children }) {
+import styles from './Button.module.scss';
+export default function Button({ 
+    onClick, 
+    disabled, 
+    type, 
+    scrollTo, 
+    disabledClass, 
+    children
+}) {
 
     const handleClick = useCallback((e) => {
-        if(onClick){
+        if (onClick) {
             onClick(e)
         }
 
-        if(scrollTo) {
+        if (scrollTo) {
             scrollToID(scrollTo);
         }
     }, [scrollTo, onClick]);
 
     return (
-        <button className={`${styles.btn} ${disabledClass ? styles.btnDisabled : ''}`}
+        <button
+            className={`${styles.btn} ${disabledClass ? styles.btnDisabled : ''}`}
             onClick={handleClick}
             disabled={disabled}
             type={type || 'button'}>

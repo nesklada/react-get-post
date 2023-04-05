@@ -31,21 +31,20 @@
     text-align: center;
     text-decoration: none;
     background-color: var(--btn-bg);
-    transition: color .15s ease-in-out,
-                background-color .15s ease-in-out,
-                border-color .15s ease-in-out,
-                box-shadow .15s ease-in-out,
-                filter .15s ease-in-out;
+    transition: .15s ease-in-out;
 
     &:hover {
         filter: brightness(85%);
+        transform: scale(1.1);
     }
 
     &:active {
         transition: 0s;
+        transition: transform 0.15s ease-in;
         filter: none;
         color: #fff;
         background: #000;
+        transform: scale(1);
     }
 
     &:disabled,
