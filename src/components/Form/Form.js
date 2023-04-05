@@ -97,22 +97,7 @@ export default function Form() {
             </SectionHeader>
 
             {submited ?
-                <motion.div
-                    initial={{
-                        scale: 1.3,
-                        opacity: 0,
-                        y: 100
-                    }}
-                    animate={{
-                        scale: 1,
-                        opacity: 1,
-                        y: 0
-                    }}
-                    transition={{
-                        delay: 0.3
-                    }}>
-                    <FormSubmited />
-                </motion.div> :
+                    <FormSubmited /> :
                 <MUICustomTheme>
                     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                         {(submiting || !positions) &&
